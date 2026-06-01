@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre Nosotros – JC Events</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="shortcut icon" href="../assets/images/favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+  <link rel="icon" sizes="192x192" href="../assets/images/android.png">
+</head>
+<body>
+
+  <nav id="navbar" class="scrolled">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo" data-nav="home">
+		<img src="../assets/images/logo.png" alt="Logo JC Events" class="logo-jc"/>
+      </a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../es/index.html">Inicio</a></li>
+        <li><a href="../es/about.html" class="active">Sobre Nosotros</a></li>
+        <li><a href="../es/services.html">Servicios</a></li>
+        <li><a href="../es/gallery.html">Galería</a></li>
+        <li><a href="../es/contact.html" class="nav-cta">Contáctanos</a></li>
+      </ul>
+	  <div class="lang-switch">
+		<a href="../es/about.html" class="lang active">Español</a>
+		<span>|</span>
+		<a href="../en/about.html" class="lang">Inglés</a>
+	</div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <header class="page-hero">
+    <div class="page-hero-bg">
+      <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1600&q=80" alt="About Us" />
+    </div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-eyebrow">Nuestra Historia</p>
+      <h1>Sobre <em>Nosotros</em></h1>
+     <!-- <nav class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>About Us</span>
+      </nav>-->
+    </div>
+  </header>
+
+  <!-- WHO WE ARE -->
+  <section class="section" style="background:var(--black);">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;">
+        <div class="reveal_services">
+          <p class="section-eyebrow">Quiénes Somos</p>
+          <h2 class="section-title">Más de una década<br/><em>creando magia</em></h2>
+          <p style="font-size:.95rem;font-weight:300;line-height:1.9;color:var(--gray);margin-bottom:1.2rem;">
+            <strong style="color:var(--gold);">JC Events</strong> nació en 2012 con una misión clara: convertir cada celebración en una experiencia única, elegante e irrepetible. Lo que comenzó como una pequeña empresa familiar hoy es una de las productoras de eventos más reconocidas de la región.
+          </p>
+          <p style="font-size:.95rem;font-weight:300;line-height:1.9;color:var(--gray);margin-bottom:2rem;">
+            Nos especializamos en bodas, quinceañeras, graduaciones, baby showers y catering de alto nivel. Cada evento lleva nuestro sello de excelencia, creatividad y atención al detalle que nos distingue.
+          </p>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <a href="contact.html" class="btn btn-gold">Contáctanos</a>
+            <a href="services.html" class="btn btn-outline">Ver Servicios</a>
+          </div>
+        </div>
+        <div class="reveal" style="position:relative;">
+          <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&q=80"
+               alt="Evento JC Events"
+               style="border-radius:2px;box-shadow:var(--shadow);aspect-ratio:4/3;object-fit:cover;width:100%;" />
+          <div style="position:absolute;bottom:-2rem;left:-2rem;background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:var(--black);padding:1.5rem 2rem;border-radius:2px;box-shadow:0 10px 30px rgba(201,168,76,.4);z-index:2;">
+            <div style="font-family:var(--font-display);font-size:3rem;font-weight:300;line-height:1;">500<span style="font-size:1.5rem;">+</span></div>
+            <div style="font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;">Eventos Exitosos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION / VISION / VALUES -->
+  <section class="section" style="background:var(--black-2);">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Nuestros Pilares</p>
+        <h2 class="section-title">Misión, Visión<br/><em>& Valores</em></h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;">
+        <div class="glow-card reveal" style="padding:2.5rem;text-align:center;">
+          <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--gold-dark),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.4rem;color:var(--black);"><i class="fas fa-bullseye"></i></div>
+          <h3 style="font-family:var(--font-display);font-size:1.8rem;font-weight:400;color:var(--gold);margin-bottom:1rem;">Misión</h3>
+          <p style="font-size:.88rem;font-weight:300;line-height:1.8;color:var(--gray);">Crear experiencias memorables y personalizadas que superen las expectativas de nuestros clientes, combinando creatividad, profesionalismo y atención meticulosa al detalle en cada evento que producimos.</p>
+        </div>
+        <div class="glow-card reveal" style="padding:2.5rem;text-align:center;border-color:rgba(201,168,76,.25);">
+          <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--gold-dark),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.4rem;color:var(--black);"><i class="fas fa-eye"></i></div>
+          <h3 style="font-family:var(--font-display);font-size:1.8rem;font-weight:400;color:var(--gold);margin-bottom:1rem;">Visión</h3>
+          <p style="font-size:.88rem;font-weight:300;line-height:1.8;color:var(--gray);">Ser la empresa de eventos más reconocida y respetada de la región, sinónimo de elegancia, confiabilidad e innovación, llevando la felicidad y la magia a cada celebración de nuestros clientes.</p>
+        </div>
+        <div class="glow-card reveal" style="padding:2.5rem;text-align:center;">
+          <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--gold-dark),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.4rem;color:var(--black);"><i class="fas fa-gem"></i></div>
+          <h3 style="font-family:var(--font-display);font-size:1.8rem;font-weight:400;color:var(--gold);margin-bottom:1rem;">Valores</h3>
+          <ul style="font-size:.88rem;font-weight:300;line-height:2.1;color:var(--gray);list-style:none;text-align:left;">
+            <li><i class="fas fa-check" style="color:var(--gold);margin-right:.6rem;font-size:.7rem;"></i>Excelencia en cada detalle</li>
+            <li><i class="fas fa-check" style="color:var(--gold);margin-right:.6rem;font-size:.7rem;"></i>Pasión por lo que hacemos</li>
+            <li><i class="fas fa-check" style="color:var(--gold);margin-right:.6rem;font-size:.7rem;"></i>Compromiso con el cliente</li>
+            <li><i class="fas fa-check" style="color:var(--gold);margin-right:.6rem;font-size:.7rem;"></i>Innovación y creatividad</li>
+            <li><i class="fas fa-check" style="color:var(--gold);margin-right:.6rem;font-size:.7rem;"></i>Integridad y transparencia</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section" style="background:var(--black);">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;">
+        <div class="reveal">
+          <p class="section-eyebrow">Trayectoria</p>
+          <h2 class="section-title">Nuestra<br/><em>Historia</em></h2>
+          <p style="font-size:.9rem;font-weight:300;line-height:1.8;color:var(--gray);margin-bottom:2.5rem;">Cada año ha sido un paso más hacia la excelencia. Conoce los momentos que nos han formado como empresa.</p>
+          <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80"
+               alt="Historia JC Events"
+               style="border-radius:2px;box-shadow:var(--shadow);width:100%;aspect-ratio:4/3;object-fit:cover;" />
+        </div>
+        <div class="reveal">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">2012</div>
+              <div class="timeline-title">El Comienzo</div>
+              <p class="timeline-desc">JC Events nació como empresa familiar con la organización de nuestra primera boda íntima de 80 personas, marcando el inicio de un gran camino.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2015</div>
+              <div class="timeline-title">Expansión de Servicios</div>
+              <p class="timeline-desc">Incorporamos catering profesional y ampliamos nuestra oferta a quinceañeras y graduaciones, triplicando nuestra cartera de clientes.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2018</div>
+              <div class="timeline-title">Premio a la Excelencia</div>
+              <p class="timeline-desc">Fuimos reconocidos como la Mejor Empresa de Eventos de la región, consolidando nuestra reputación y abriendo nuevas oportunidades.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2021</div>
+              <div class="timeline-title">Renovación Digital</div>
+              <p class="timeline-desc">Modernizamos nuestra presencia digital y adoptamos nuevas tecnologías para cotizaciones en línea y seguimiento personalizado de cada evento.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2024</div>
+              <div class="timeline-title">500+ Eventos y Contando</div>
+              <p class="timeline-desc">Superamos los 500 eventos con éxito, manteniéndonos como referente de calidad y elegancia en la organización de celebraciones.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section" style="background:var(--black-2);">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Las Personas Detrás</p>
+        <h2 class="section-title">Nuestro <em>Equipo</em></h2>
+        <p class="section-desc">Profesionales apasionados, dedicados a hacer realidad los momentos más importantes de tu vida.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2.5rem;">
+        <div class="team-card reveal">
+          <div class="team-img-wrap"><img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Directora" /></div>
+          <div class="team-name">Juliana Cruz</div>
+          <div class="team-role">Directora & Fundadora</div>
+          <p class="team-desc">Con 12 años en la industria, Juliana transforma visiones en realidad con su inigualable ojo para el detalle y la elegancia.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-img-wrap"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Director Creativo" /></div>
+          <div class="team-name">Carlos Medina</div>
+          <div class="team-role">Director Creativo</div>
+          <p class="team-desc">Diseñador de profesión, Carlos crea ambientes únicos y envolventes que dejan sin aliento a cada invitado.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-img-wrap"><img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Coordinadora" /></div>
+          <div class="team-name">Andrea López</div>
+          <div class="team-role">Coordinadora de Eventos</div>
+          <p class="team-desc">Maestra de la logística, Andrea garantiza que cada evento fluya con perfecta sincronía desde el primer minuto.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-img-wrap"><img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Chef" /></div>
+          <div class="team-name">Roberto Salas</div>
+          <div class="team-role">Chef Ejecutivo</div>
+          <p class="team-desc">Con formación internacional, Roberto diseña menús exclusivos que deleitan los paladares más exigentes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-band">
+    <div class="stat"><span class="stat-num" data-target="500">0</span><span>+</span><p>Eventos Realizados</p></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num" data-target="12">0</span><span>+</span><p>Años de Experiencia</p></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num" data-target="98">0</span><span>%</span><p>Clientes Satisfechos</p></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num" data-target="50">0</span><span>+</span><p>Profesionales</p></div>
+  </div>
+
+  <!-- CTA -->
+  <section style="background:var(--black-2);padding:6rem 0;text-align:center;border-top:1px solid rgba(201,168,76,.1);">
+    <div class="container reveal">
+      <p class="section-eyebrow" style="text-align:center;">¿Listo para empezar?</p>
+      <h2 class="section-title" style="text-align:center;">Hagamos realidad<br/><em>tu evento soñado</em></h2>
+      <p style="font-size:.95rem;font-weight:300;color:var(--gray);max-width:500px;margin:0 auto 2.5rem;line-height:1.8;">Contáctanos hoy y uno de nuestros coordinadores te atenderá personalmente para diseñar la celebración perfecta.</p>
+      <a href="contact.html" class="btn btn-gold">Comenzar Ahora</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top"><div class="container"><div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+			<a href="#home" class="nav-logo" data-nav="home">
+				<img src="../assets/images/logo.png" alt="Logo JC Events" class="logo-jc"/>
+			</a>
+        </div>
+        <p>Hacemos realidad los momentos más especiales de tu vida con elegancia, pasión y profesionalismo.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-nav"><h4>Navegación</h4><ul>
+        <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Servicios</a></li><li><a href="gallery.html">Galería</a></li>
+        <li><a href="contact.html">Contáctanos</a></li>
+      </ul></div>
+      <div class="footer-services"><h4>Servicios</h4><ul>
+        <li><a href="services.html">Bodas</a></li><li><a href="services.html">Quinceañeras</a></li>
+        <li><a href="services.html">Graduaciones</a></li><li><a href="services.html">Baby Showers</a></li>
+        <li><a href="services.html">Catering</a></li>
+      </ul></div>
+      <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p><i class="fas fa-phone"></i>+1 (408) 687-3611</p>
+            <p><i class="fas fa-envelope"></i> jc.events@yahoo.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> 1111 Campbell Ave, San Jose, CA 95126</p>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2024 JC Events. Todos los derechos reservados.</p>
+        
+		<p class="credits">
+			Diseñado por Leimbek Web Studio. 
+			<img src="../assets/images/webstudio.gif" alt="Leimbek WebStudio logo" class="webstudio">
+		</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/14086873611" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <button class="back-top" id="backTop"><i class="fas fa-chevron-up"></i></button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
