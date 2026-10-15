@@ -2,15 +2,26 @@
    JC EVENTS – main.js
 ══════════════════════════════════════════ */
 
+// Shared by every page. Each block below checks that its elements exist,
+// so a page without a hero, stats band, gallery or form doesn't stop the script.
+
+const LANG = document.documentElement.lang === 'en' ? 'en' : 'es';
+const MESSAGES = {
+  es: { required: 'Este campo es obligatorio.', email: 'Ingresa un email válido.', sending: 'Enviando...' },
+  en: { required: 'This field is required.', email: 'Enter a valid email address.', sending: 'Sending...' },
+}[LANG];
+
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ─────────────────────────────────────
      LOADER
   ───────────────────────────────────── */
   const loader = document.getElementById('loader');
-  window.addEventListener('load', () => {
-    setTimeout(() => loader.classList.add('hidden'), 1800);
-  });
+  if (loader) {
+    window.addEventListener('load', () => {
+      setTimeout(() => loader.classList.add('hidden'), 1800);
+    });
+  }
 
   /* ─────────────────────────────────────
      NAVBAR – scroll behaviour
@@ -19,17 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const backTop = document.getElementById('backTop');
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      navbar.classList.add('scrolled');
-      backTop.classList.add('visible');
-    } else {
-      navbar.classList.remove('scrolled');
-      backTop.classList.remove('visible');
-    }
+    const scrolled = window.scrollY > 80;
+    navbar?.classList.toggle('scrolled', scrolled);
+    backTop?.classList.toggle('visible', scrolled);
     highlightNavLink();
   });
 
-  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  backTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
   /* ─────────────────────────────────────
      NAVBAR – active link highlight
@@ -58,17 +65,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger  = document.getElementById('hamburger');
   const navLinks   = document.getElementById('navLinks');
 
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    navLinks.classList.toggle('open');
-  });
-
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      navLinks.classList.remove('open');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
     });
-  });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  }
 
   /* ─────────────────────────────────────
      HERO SLIDESHOW
@@ -80,10 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function goToSlide(n) {
     heroImgs[currentSlide].classList.remove('active');
-    heroDots[currentSlide].classList.remove('active');
+    heroDots[currentSlide]?.classList.remove('active');
     currentSlide = (n + heroImgs.length) % heroImgs.length;
     heroImgs[currentSlide].classList.add('active');
-    heroDots[currentSlide].classList.add('active');
+    heroDots[currentSlide]?.classList.add('active');
   }
 
   function nextSlide() { goToSlide(currentSlide + 1); }
@@ -100,7 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  startSlider();
+  // Only the home hero has several images with matching dots.
+  if (heroImgs.length > 1 && heroDots.length === heroImgs.length) startSlider();
 
   /* ─────────────────────────────────────
      STATS COUNTER
@@ -111,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function animateStats() {
     if (statsAnimated) return;
     const band = document.querySelector('.stats-band');
+    if (!band) return;
     const rect = band.getBoundingClientRect();
     if (rect.top < window.innerHeight - 100) {
       statsAnimated = true;
@@ -211,90 +222,95 @@ document.addEventListener('DOMContentLoaded', () => {
     openLightbox(lbIndex);
   }
 
-  galleryItems.forEach((item, i) => {
-    item.addEventListener('click', () => {
-      const visible = getVisibleItems();
-      const visIdx  = visible.indexOf(item);
-      if (visIdx >= 0) openLightbox(visIdx);
+  // Only the home page has this lightbox; the gallery page has its own.
+  if (lightbox) {
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const visible = getVisibleItems();
+        const visIdx  = visible.indexOf(item);
+        if (visIdx >= 0) openLightbox(visIdx);
+      });
     });
-  });
 
-  lbClose.addEventListener('click', closeLightbox);
-  lbPrev.addEventListener('click', () => lbNav(-1));
-  lbNext.addEventListener('click', () => lbNav(1));
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', () => lbNav(-1));
+    lbNext.addEventListener('click', () => lbNav(1));
 
-  lightbox.addEventListener('click', e => {
-    if (e.target === lightbox) closeLightbox();
-  });
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
 
-  document.addEventListener('keydown', e => {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape')      closeLightbox();
-    if (e.key === 'ArrowLeft')   lbNav(-1);
-    if (e.key === 'ArrowRight')  lbNav(1);
-  });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape')      closeLightbox();
+      if (e.key === 'ArrowLeft')   lbNav(-1);
+      if (e.key === 'ArrowRight')  lbNav(1);
+    });
+  }
 
   /* ─────────────────────────────────────
      TESTIMONIALS SLIDER
   ───────────────────────────────────── */
   const track     = document.getElementById('testimonialsTrack');
-  const cards     = track.querySelectorAll('.testimonial-card');
-  const tDots     = document.getElementById('tDots');
-  const tPrev     = document.getElementById('tPrev');
-  const tNext     = document.getElementById('tNext');
-  let   tIndex    = 0;
-  let   perView   = 3;
-  let   tTimer;
+  if (track) {
+    const cards     = track.querySelectorAll('.testimonial-card');
+    const tDots     = document.getElementById('tDots');
+    const tPrev     = document.getElementById('tPrev');
+    const tNext     = document.getElementById('tNext');
+    let   tIndex    = 0;
+    let   perView   = 3;
+    let   tTimer;
 
-  function getPerView() {
-    if (window.innerWidth <= 480)  return 1;
-    if (window.innerWidth <= 768)  return 1;
-    if (window.innerWidth <= 900)  return 2;
-    return 3;
-  }
-
-  function buildDots() {
-    tDots.innerHTML = '';
-    perView = getPerView();
-    const count = Math.ceil(cards.length / perView);
-    for (let i = 0; i < count; i++) {
-      const dot = document.createElement('button');
-      dot.className = 't-dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => goTo(i));
-      tDots.appendChild(dot);
+    function getPerView() {
+      if (window.innerWidth <= 480)  return 1;
+      if (window.innerWidth <= 768)  return 1;
+      if (window.innerWidth <= 900)  return 2;
+      return 3;
     }
-  }
 
-  function goTo(idx) {
-    perView = getPerView();
-    const max  = Math.ceil(cards.length / perView) - 1;
-    tIndex = Math.max(0, Math.min(idx, max));
-    const cardW = track.parentElement.offsetWidth;
-    track.style.transform = `translateX(-${tIndex * cardW}px)`;
-    document.querySelectorAll('.t-dot').forEach((d, i) => d.classList.toggle('active', i === tIndex));
-  }
-
-  function startTTimer() {
-    tTimer = setInterval(() => {
+    function buildDots() {
+      tDots.innerHTML = '';
       perView = getPerView();
-      const max = Math.ceil(cards.length / perView) - 1;
-      goTo(tIndex >= max ? 0 : tIndex + 1);
-    }, 5000);
+      const count = Math.ceil(cards.length / perView);
+      for (let i = 0; i < count; i++) {
+        const dot = document.createElement('button');
+        dot.className = 't-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goTo(i));
+        tDots.appendChild(dot);
+      }
+    }
+
+    function goTo(idx) {
+      perView = getPerView();
+      const max  = Math.ceil(cards.length / perView) - 1;
+      tIndex = Math.max(0, Math.min(idx, max));
+      const cardW = track.parentElement.offsetWidth;
+      track.style.transform = `translateX(-${tIndex * cardW}px)`;
+      document.querySelectorAll('.t-dot').forEach((d, i) => d.classList.toggle('active', i === tIndex));
+    }
+
+    function startTTimer() {
+      tTimer = setInterval(() => {
+        perView = getPerView();
+        const max = Math.ceil(cards.length / perView) - 1;
+        goTo(tIndex >= max ? 0 : tIndex + 1);
+      }, 5000);
+    }
+
+    tPrev.addEventListener('click', () => { clearInterval(tTimer); goTo(tIndex - 1); startTTimer(); });
+    tNext.addEventListener('click', () => { clearInterval(tTimer); goTo(tIndex + 1); startTTimer(); });
+
+    buildDots();
+    startTTimer();
+    window.addEventListener('resize', () => { buildDots(); goTo(0); });
   }
-
-  tPrev.addEventListener('click', () => { clearInterval(tTimer); goTo(tIndex - 1); startTTimer(); });
-  tNext.addEventListener('click', () => { clearInterval(tTimer); goTo(tIndex + 1); startTTimer(); });
-
-  buildDots();
-  startTTimer();
-  window.addEventListener('resize', () => { buildDots(); goTo(0); });
 
   /* ─────────────────────────────────────
      CONTACT FORM VALIDATION
   ───────────────────────────────────── */
-  const form    = document.getElementById('contactForm');
-  const success = document.getElementById('formSuccess');
-
+  // Home page (#contactForm) and contact page (#contactPageForm).
+  // This is a demo site: the forms validate, then show a notice that
+  // nothing was sent. Connect a form service before using it for real.
   function validateField(field) {
     const errorEl = field.parentElement.querySelector('.form-error');
     if (!errorEl) return true;
@@ -304,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (field.hasAttribute('required') && !field.value.trim()) {
       field.classList.add('error');
-      errorEl.textContent = 'Este campo es obligatorio.';
+      errorEl.textContent = MESSAGES.required;
       return false;
     }
 
@@ -312,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRe.test(field.value)) {
         field.classList.add('error');
-        errorEl.textContent = 'Ingresa un email válido.';
+        errorEl.textContent = MESSAGES.email;
         return false;
       }
     }
@@ -320,31 +336,36 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   }
 
-  form.querySelectorAll('input, select, textarea').forEach(field => {
-    field.addEventListener('blur', () => validateField(field));
-    field.addEventListener('input', () => validateField(field));
-  });
+  ['contactForm', 'contactPageForm'].forEach(id => {
+    const form = document.getElementById(id);
+    if (!form) return;
+    const success = form.querySelector('.form-success');
+    const btn     = form.querySelector('.btn-submit');
+    const btnText = btn?.querySelector('.btn-text');
+    const idleLabel = btnText?.textContent;
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const fields  = form.querySelectorAll('input[required], select[required], textarea[required]');
-    let   isValid = true;
-    fields.forEach(f => { if (!validateField(f)) isValid = false; });
+    form.querySelectorAll('input, select, textarea').forEach(field => {
+      field.addEventListener('blur', () => validateField(field));
+      field.addEventListener('input', () => validateField(field));
+    });
 
-    if (!isValid) return;
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      let isValid = true;
+      form.querySelectorAll('[required]').forEach(f => { if (!validateField(f)) isValid = false; });
+      if (!isValid) return;
 
-    const btn = form.querySelector('.btn-submit');
-    btn.disabled = true;
-    btn.querySelector('.btn-text').textContent = 'Enviando...';
+      if (btn) btn.disabled = true;
+      if (btnText) btnText.textContent = MESSAGES.sending;
 
-    // Simulate sending
-    setTimeout(() => {
-      form.reset();
-      btn.disabled = false;
-      btn.querySelector('.btn-text').textContent = 'Enviar Consulta';
-      success.classList.add('show');
-      setTimeout(() => success.classList.remove('show'), 5000);
-    }, 1500);
+      setTimeout(() => {
+        form.reset();
+        if (btn) btn.disabled = false;
+        if (btnText) btnText.textContent = idleLabel;
+        success?.classList.add('show');
+        setTimeout(() => success?.classList.remove('show'), 8000);
+      }, 800);
+    });
   });
 
   /* ─────────────────────────────────────

@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Galería – JC Events</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="css/pages.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -342,14 +341,14 @@
     let   glbIdx  = 0;
 
     function visItems() {
-      return Array.from(document.querySelectorAll('.gallery-page-item:not(.hidden)'));
+      return Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
     }
 
     function openGlb(i) {
       const items = visItems();
       glbIdx = i;
       const img  = items[i].querySelector('img');
-      const cap  = items[i].querySelector('.title');
+      const cap  = items[i].querySelector('.gallery-info p');
       glbImg.src = img.src;
       glbCap.textContent = cap ? cap.textContent : '';
       glb.classList.add('open');
@@ -359,7 +358,7 @@
     function closeGlb() { glb.classList.remove('open'); document.body.style.overflow = ''; }
     function navGlb(d)  { const v = visItems(); glbIdx = (glbIdx + d + v.length) % v.length; openGlb(glbIdx); }
 
-    document.querySelectorAll('.gallery-page-item').forEach((item, i) => {
+    document.querySelectorAll('.gallery-item').forEach(item => {
       item.addEventListener('click', () => {
         const v = visItems();
         const vi = v.indexOf(item);
@@ -378,20 +377,7 @@
       if (e.key === 'ArrowLeft')  navGlb(-1);
       if (e.key === 'ArrowRight') navGlb(1);
     });
-
-    // Filter
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const f = btn.dataset.filter;
-        document.querySelectorAll('.gallery-page-item').forEach(item => {
-          const show = f === 'all' || item.dataset.cat === f;
-          item.classList.toggle('hidden', !show);
-          if (show) item.style.animation = 'fadeInUp .4s ease both';
-        });
-      });
-    });
+    // Filtering is handled by assets/js/main.js.
   </script>
 </body>
 </html>

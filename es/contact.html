@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contáctanos – JC Events</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
-   <link rel="stylesheet" href="css/pages.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -253,7 +252,7 @@
               </button>
               <div class="form-success" id="cpFormSuccess">
                 <i class="fas fa-check-circle"></i>
-                <p>¡Solicitud enviada! Te contactaremos en menos de 24 horas.</p>
+                <p>Sitio de demostración: este formulario no está conectado, así que tu solicitud no se envió.</p>
               </div>
             </form>
           </div>
@@ -373,45 +372,5 @@
   </a>
   <button class="back-top" id="backTop"><i class="fas fa-chevron-up"></i></button>
   <script src="../assets/js/main.js"></script>
-  <script>
-    // Contact page form
-    const cpForm    = document.getElementById('contactPageForm');
-    const cpSuccess = document.getElementById('cpFormSuccess');
-
-    function validateF(field) {
-      const err = field.parentElement.querySelector('.form-error');
-      if (!err) return true;
-      field.classList.remove('error'); err.textContent = '';
-      if (field.hasAttribute('required') && !field.value.trim()) {
-        field.classList.add('error'); err.textContent = 'Este campo es obligatorio.'; return false;
-      }
-      if (field.type === 'email' && field.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
-        field.classList.add('error'); err.textContent = 'Ingresa un email válido.'; return false;
-      }
-      return true;
-    }
-
-    cpForm.querySelectorAll('input,select,textarea').forEach(f => {
-      f.addEventListener('blur',  () => validateF(f));
-      f.addEventListener('input', () => validateF(f));
-    });
-
-    cpForm.addEventListener('submit', e => {
-      e.preventDefault();
-      let ok = true;
-      cpForm.querySelectorAll('[required]').forEach(f => { if (!validateF(f)) ok = false; });
-      if (!ok) return;
-      const btn = cpForm.querySelector('.btn-submit');
-      btn.disabled = true;
-      btn.querySelector('.btn-text').textContent = 'Enviando...';
-      setTimeout(() => {
-        cpForm.reset();
-        btn.disabled = false;
-        btn.querySelector('.btn-text').textContent = 'Enviar Solicitud';
-        cpSuccess.classList.add('show');
-        setTimeout(() => cpSuccess.classList.remove('show'), 6000);
-      }, 1500);
-    });
-  </script>
 </body>
 </html>
